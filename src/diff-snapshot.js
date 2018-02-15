@@ -18,6 +18,7 @@ const childProcess = require('child_process');
 const pixelmatch = require('pixelmatch');
 const mkdirp = require('mkdirp');
 const { PNG } = require('pngjs');
+const glur = require('glur');
 
 function diffImageToSnapshot(options) {
   const {
@@ -53,9 +54,20 @@ function diffImageToSnapshot(options) {
     const imageHeight = receivedImage.height;
     const diffImage = new PNG({ width: imageWidth, height: imageHeight });
 
+    const receivedImageBlurred = new PNG({ width: imageWidth, height: imageHeight });
+    const baselineImageBlurred = new PNG({ width: imageWidth, height: imageHeight });
+    PNG.bitblt(
+      receivedImage, receivedImageBlurred, 0, 0, imageWidth, imageHeight, 0, 0
+    );
+    PNG.bitblt(
+      baselineImage, baselineImageBlurred, 0, 0, imageWidth, imageHeight, 0, 0
+    );
+    glur(receivedImageBlurred.data, imageWidth, imageHeight, 2);
+    glur(baselineImageBlurred.data, imageWidth, imageHeight, 2);
+
     const diffPixelCount = pixelmatch(
-      receivedImage.data,
-      baselineImage.data,
+      receivedImageBlurred.data,
+      baselineImageBlurred.data,
       diffImage.data,
       imageWidth,
       imageHeight,
