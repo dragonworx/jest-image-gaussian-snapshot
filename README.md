@@ -8,17 +8,19 @@
 
 Jest matcher that performs image comparisons using [pixelmatch](https://github.com/mapbox/pixelmatch) and behaves just like [Jest snapshots](https://facebook.github.io/jest/docs/snapshot-testing.html) do! Very useful for visual regression testing.
 
+This fork uses gaussian blur at 2px radius for noise reduction.
+
 ## Installation:
   ```bash
-  npm i --save-dev jest-image-snapshot
+  npm i --save-dev jest-image-gaussian-snapshot
   ```
 
-  Please note that `Jest` `>=20 <=22` is a peerDependency. `jest-image-snapshot` will **not** work with anything below Jest 20.x.x
+  Please note that `Jest` `>=20 <=22` is a peerDependency. `jest-image-gaussian-snapshot` will **not** work with anything below Jest 20.x.x
 
 ## Usage:
 1. Extend Jest's `expect`
   ```javascript
-    const { toMatchImageSnapshot } = require('jest-image-snapshot');
+    const { toMatchImageSnapshot } = require('jest-image-gaussian-snapshot');
 
     expect.extend({ toMatchImageSnapshot });
   ```
@@ -73,7 +75,7 @@ The failure threshold can be set in percent, in this case if the difference is o
 Custom defaults can be set with a configurable extension. This will allow for customization of this module's defaults. For example, a 0% default threshold can be shared across all tests with the configuration below:
 
 ```javascript
-const { configureToMatchImageSnapshot } = require('jest-image-snapshot');
+const { configureToMatchImageSnapshot } = require('jest-image-gaussian-snapshot');
 
 const customConfig = { threshold: 0 };
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
@@ -116,7 +118,7 @@ expect.extend({ toMatchImageSnapshot });
 
   And now that I know that I broke the card art I can fix it!
 
-  Thanks `jest-image-snapshot`, that broken header would not have looked good in production!
+  Thanks `jest-image-gaussian-snapshot`, that broken header would not have looked good in production!
 
   ## Contributing
   We welcome Your interest in the American Express Open Source Community on Github.

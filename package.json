@@ -1,7 +1,7 @@
 {
-  "name": "jest-image-snapshot",
-  "version": "2.3.0",
-  "description": "Jest matcher for image comparisons. Most commonly used for visual regression testing.",
+  "name": "jest-image-gaussian-snapshot",
+  "version": "2.4.0",
+  "description": "Jest matcher for image comparisons. Most commonly used for visual regression testing - with gaussian blur for noise reduction.",
   "main": "src/index.js",
   "engines": {
     "node": ">=6.0.0"
@@ -37,9 +37,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/americanexpress/jest-image-snapshot.git"
+    "url": "https://github.com/dragonworx/jest-image-gaussian-snapshot.git"
   },
-  "author": "Andres Escobar <andres.escobar@aexp.com> (https://github.com/anescobar1991)",
+  "author": "Ali Chamas <achamas@atlassian.com> (https://github.com/dragonworx)",
   "license": "Apache-2.0",
   "devDependencies": {
     "amex-jest-preset": "^4.0.2",
